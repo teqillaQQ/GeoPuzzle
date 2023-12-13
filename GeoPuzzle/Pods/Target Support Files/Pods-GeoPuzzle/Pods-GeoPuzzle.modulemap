@@ -1,0 +1,6 @@
+framework module Pods_GeoPuzzle {
+  umbrella header "Pods-GeoPuzzle-umbrella.h"
+
+  export *
+  module * { export * }
+}

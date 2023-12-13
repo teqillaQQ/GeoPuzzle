@@ -12,6 +12,7 @@
 		2EF07FC52B292B17002DAA9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC42B292B17002DAA9F /* ViewController.swift */; };
 		2EF07FCA2B292B18002DAA9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF07FC92B292B18002DAA9F /* Assets.xcassets */; };
 		2EF07FCD2B292B18002DAA9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF07FCB2B292B18002DAA9F /* LaunchScreen.storyboard */; };
+		476098DE343573E56AF90A9C /* Pods_GeoPuzzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB32C8B6ACCD50814034B606 /* Pods_GeoPuzzle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		2EF07FC92B292B18002DAA9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EF07FCC2B292B18002DAA9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EF07FCE2B292B18002DAA9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6081E81AF3E60214F04CF52 /* Pods-GeoPuzzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPuzzle.debug.xcconfig"; path = "Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle.debug.xcconfig"; sourceTree = "<group>"; };
+		BB32C8B6ACCD50814034B606 /* Pods_GeoPuzzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoPuzzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD299D87BC9700E4BD0DDBCB /* Pods-GeoPuzzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoPuzzle.release.xcconfig"; path = "Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476098DE343573E56AF90A9C /* Pods_GeoPuzzle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				2EF07FBF2B292B17002DAA9F /* GeoPuzzle */,
 				2EF07FBE2B292B17002DAA9F /* Products */,
+				ABAE9F5EA855CAEC7E9E6225 /* Pods */,
+				F719827F8CBB395A07CF65A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = GeoPuzzle;
 			sourceTree = "<group>";
 		};
+		ABAE9F5EA855CAEC7E9E6225 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6081E81AF3E60214F04CF52 /* Pods-GeoPuzzle.debug.xcconfig */,
+				FD299D87BC9700E4BD0DDBCB /* Pods-GeoPuzzle.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F719827F8CBB395A07CF65A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB32C8B6ACCD50814034B606 /* Pods_GeoPuzzle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2EF07FD12B292B18002DAA9F /* Build configuration list for PBXNativeTarget "GeoPuzzle" */;
 			buildPhases = (
+				8D6678B90A89FEEFBDEDAEAB /* [CP] Check Pods Manifest.lock */,
 				2EF07FB92B292B16002DAA9F /* Sources */,
 				2EF07FBA2B292B16002DAA9F /* Frameworks */,
 				2EF07FBB2B292B16002DAA9F /* Resources */,
+				B7CF42AC8B2D78EE852E18FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,6 +154,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D6678B90A89FEEFBDEDAEAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeoPuzzle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7CF42AC8B2D78EE852E18FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2EF07FB92B292B16002DAA9F /* Sources */ = {
@@ -191,7 +259,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -254,7 +322,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -275,6 +343,7 @@
 		};
 		2EF07FD22B292B18002DAA9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6081E81AF3E60214F04CF52 /* Pods-GeoPuzzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +371,7 @@
 		};
 		2EF07FD32B292B18002DAA9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD299D87BC9700E4BD0DDBCB /* Pods-GeoPuzzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
