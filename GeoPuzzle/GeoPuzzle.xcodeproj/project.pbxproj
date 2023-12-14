@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0B91EB2B2A85BE005BB6FA /* quizData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E0B91EA2B2A85BE005BB6FA /* quizData.json */; };
 		2EF07FC12B292B17002DAA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC02B292B17002DAA9F /* AppDelegate.swift */; };
 		2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */; };
-		2EF07FC52B292B17002DAA9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC42B292B17002DAA9F /* ViewController.swift */; };
+		2EF07FC52B292B17002DAA9F /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC42B292B17002DAA9F /* QuizViewController.swift */; };
 		2EF07FCA2B292B18002DAA9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF07FC92B292B18002DAA9F /* Assets.xcassets */; };
 		2EF07FCD2B292B18002DAA9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF07FCB2B292B18002DAA9F /* LaunchScreen.storyboard */; };
 		476098DE343573E56AF90A9C /* Pods_GeoPuzzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB32C8B6ACCD50814034B606 /* Pods_GeoPuzzle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E0B91EA2B2A85BE005BB6FA /* quizData.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = quizData.json; sourceTree = "<group>"; };
 		2EF07FBD2B292B17002DAA9F /* GeoPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF07FC02B292B17002DAA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2EF07FC42B292B17002DAA9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2EF07FC42B292B17002DAA9F /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		2EF07FC92B292B18002DAA9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EF07FCC2B292B18002DAA9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EF07FCE2B292B18002DAA9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,9 +63,10 @@
 		2EF07FBF2B292B17002DAA9F /* GeoPuzzle */ = {
 			isa = PBXGroup;
 			children = (
+				2E0B91EA2B2A85BE005BB6FA /* quizData.json */,
 				2EF07FC02B292B17002DAA9F /* AppDelegate.swift */,
 				2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */,
-				2EF07FC42B292B17002DAA9F /* ViewController.swift */,
+				2EF07FC42B292B17002DAA9F /* QuizViewController.swift */,
 				2EF07FC92B292B18002DAA9F /* Assets.xcassets */,
 				2EF07FCB2B292B18002DAA9F /* LaunchScreen.storyboard */,
 				2EF07FCE2B292B18002DAA9F /* Info.plist */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EF07FCD2B292B18002DAA9F /* LaunchScreen.storyboard in Resources */,
+				2E0B91EB2B2A85BE005BB6FA /* quizData.json in Resources */,
 				2EF07FCA2B292B18002DAA9F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,7 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF07FC52B292B17002DAA9F /* ViewController.swift in Sources */,
+				2EF07FC52B292B17002DAA9F /* QuizViewController.swift in Sources */,
 				2EF07FC12B292B17002DAA9F /* AppDelegate.swift in Sources */,
 				2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */,
 			);
