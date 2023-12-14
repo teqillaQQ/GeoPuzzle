@@ -102,9 +102,9 @@ class QuizViewController: UIViewController {
         }
 
         if selectedAnswerIndex == currentQuizItem.correctAnswerIndex {
-            print("Правильный ответ!")
+            showAlert(message: "Правильный ответ!")
         } else {
-            print("Неправильный ответ.")
+            showAlert(message: "Неправильный ответ.")
         }
 
         currentQuestionIndex += 1
@@ -112,8 +112,18 @@ class QuizViewController: UIViewController {
         if currentQuestionIndex < quizData.count {
             updateUI()
         } else {
-            
+
         }
+    }
+
+    // Alert
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.updateUI()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
