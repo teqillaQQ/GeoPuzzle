@@ -5,6 +5,7 @@ class QuizViewController: UIViewController {
 
     var quizData: [QuizItem] = []
     var currentQuestionIndex = 0
+    var score = 0
 
     // UI
     let questionLabel: UILabel = {
@@ -16,6 +17,14 @@ class QuizViewController: UIViewController {
     }()
 
     var answerButtons: [UIButton] = []
+
+    let scoreLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
 
     // MARK: - Lifecycle methods
 
@@ -46,6 +55,7 @@ class QuizViewController: UIViewController {
 
     func setupUI() {
         view.backgroundColor = .white
+
         view.addSubview(questionLabel)
         questionLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(100)
@@ -67,6 +77,12 @@ class QuizViewController: UIViewController {
 
             answerButtons.append(button)
         }
+
+        view.addSubview(scoreLabel)
+        scoreLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-20)
+            make.centerX.equalToSuperview()
+        }
     }
 
     func updateUI() {
@@ -84,6 +100,8 @@ class QuizViewController: UIViewController {
                 button.setTitle("", for: .normal)
             }
         }
+
+        scoreLabel.text = "Score: \(score)"
     }
 
     // MARK: - Button action
@@ -103,6 +121,7 @@ class QuizViewController: UIViewController {
 
         if selectedAnswerIndex == currentQuizItem.correctAnswerIndex {
             showAlert(message: "Правильный ответ!")
+            score += 1
         } else {
             showAlert(message: "Неправильный ответ.")
         }
@@ -116,16 +135,13 @@ class QuizViewController: UIViewController {
         }
     }
 
-    // Alert
     func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.updateUI()
-        }
-        alert.addAction(okAction)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }
+
 
 struct QuizItem: Codable {
     let question: String
