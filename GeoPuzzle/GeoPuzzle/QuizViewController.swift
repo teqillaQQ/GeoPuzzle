@@ -29,12 +29,17 @@ class QuizViewController: UIViewController {
     // MARK: - Load quiz data from JSON
 
     func loadQuizData() {
-        guard let path = Bundle.main.path(forResource: "quizData", ofType: "json"),
-              let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-              let quizItems = try? JSONDecoder().decode([QuizItem].self, from: data) else {
+        guard let url = Bundle.main.url(forResource: "quizData", withExtension: "json") else {
+            print("Error: Couldn't find quizData.json in the bundle.")
             return
         }
-        quizData = quizItems
+        do {
+            let data = try Data(contentsOf: url)
+            let quizItems = try JSONDecoder().decode([QuizItem].self, from: data)
+            quizData = quizItems
+        } catch {
+            print("Error loading quiz data: \(error)")
+        }
     }
 
     // MARK: - UI setup and update methods
@@ -66,7 +71,6 @@ class QuizViewController: UIViewController {
 
     func updateUI() {
         guard currentQuestionIndex < quizData.count else {
-
             return
         }
 
@@ -74,19 +78,41 @@ class QuizViewController: UIViewController {
         questionLabel.text = currentQuizItem.question
 
         for (index, button) in answerButtons.enumerated() {
-            button.setTitle(currentQuizItem.answers[index], for: .normal)
+            if index < currentQuizItem.answers.count {
+                button.setTitle(currentQuizItem.answers[index], for: .normal)
+            } else {
+                button.setTitle("", for: .normal)
+            }
         }
     }
 
     // MARK: - Button action
 
     @objc func answerButtonTapped(_ sender: UIButton) {
+        let selectedAnswerIndex = answerButtons.firstIndex(of: sender) ?? -1
+
+        guard currentQuestionIndex < quizData.count else {
+            return
+        }
+
+        let currentQuizItem = quizData[currentQuestionIndex]
+
+        guard selectedAnswerIndex >= 0, selectedAnswerIndex < currentQuizItem.answers.count else {
+            return
+        }
+
+        if selectedAnswerIndex == currentQuizItem.correctAnswerIndex {
+            print("Правильный ответ!")
+        } else {
+            print("Неправильный ответ.")
+        }
+
         currentQuestionIndex += 1
 
         if currentQuestionIndex < quizData.count {
             updateUI()
         } else {
-
+            
         }
     }
 }
@@ -94,4 +120,5 @@ class QuizViewController: UIViewController {
 struct QuizItem: Codable {
     let question: String
     let answers: [String]
+    let correctAnswerIndex: Int
 }
