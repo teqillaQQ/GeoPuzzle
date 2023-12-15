@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import Combine
 
-protocol QuizDisplayLogic {
+protocol QuizDisplayLogic: UIViewController {
     var viewModel: QuizViewModelLogic { get }
 }
 

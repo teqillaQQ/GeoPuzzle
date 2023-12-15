@@ -1,25 +1,29 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
+
     var window: UIWindow?
-    
+
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let vm = QuizViewModel()
-        window?.rootViewController = QuizViewController(vm: vm)
-        window?.makeKeyAndVisible()
+        self.window = UIWindow(windowScene: windowScene)
+
+        let navigationController = UINavigationController()
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+
+        let navigationServices = NavigationServices(navigationController: navigationController)
+        let quizCoordinator = QuizCoordinator(navigationService: navigationServices)
+        quizCoordinator.start(from: .next)
     }
-    
+
     func sceneDidDisconnect(_ scene: UIScene) {}
     func sceneDidBecomeActive(_ scene: UIScene) {}
     func sceneWillResignActive(_ scene: UIScene) {}
     func sceneWillEnterForeground(_ scene: UIScene) {}
     func sceneDidEnterBackground(_ scene: UIScene) {}
 }
-

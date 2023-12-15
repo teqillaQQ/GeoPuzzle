@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 protocol QuizViewModelLogic: AnyObject {
+    var coordinator: Coordinator? { get set }
     var state: AnyPublisher<QuizModels.State, Never> { get }
     var event: AnyPublisher<QuizModels.Event, Never> { get }
 
@@ -12,6 +13,8 @@ final class QuizViewModel: QuizViewModelLogic {
 
     // MARK: - QuizViewModelLogic properties
 
+    var coordinator: Coordinator?
+    
     var state: AnyPublisher<QuizModels.State, Never> {
         self.stateSubject.eraseToAnyPublisher()
     }
