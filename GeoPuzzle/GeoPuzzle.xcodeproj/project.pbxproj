@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2E0B91EB2B2A85BE005BB6FA /* quizData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E0B91EA2B2A85BE005BB6FA /* quizData.json */; };
+		2E3165862B2BB48A009043CF /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3165852B2BB48A009043CF /* Quiz.swift */; };
+		2E31658C2B2BB7CF009043CF /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E31658B2B2BB7CF009043CF /* QuizViewModel.swift */; };
+		2E31658E2B2BC401009043CF /* QuizModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E31658D2B2BC401009043CF /* QuizModels.swift */; };
 		2EF07FC12B292B17002DAA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC02B292B17002DAA9F /* AppDelegate.swift */; };
 		2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */; };
 		2EF07FC52B292B17002DAA9F /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC42B292B17002DAA9F /* QuizViewController.swift */; };
@@ -18,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		2E0B91EA2B2A85BE005BB6FA /* quizData.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = quizData.json; sourceTree = "<group>"; };
+		2E3165852B2BB48A009043CF /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		2E31658B2B2BB7CF009043CF /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		2E31658D2B2BC401009043CF /* QuizModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModels.swift; sourceTree = "<group>"; };
 		2EF07FBD2B292B17002DAA9F /* GeoPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF07FC02B292B17002DAA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +48,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E3165832B2BB440009043CF /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				2EF07FC42B292B17002DAA9F /* QuizViewController.swift */,
+				2E31658B2B2BB7CF009043CF /* QuizViewModel.swift */,
+				2E31658D2B2BC401009043CF /* QuizModels.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
+		2E3165842B2BB478009043CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E3165852B2BB48A009043CF /* Quiz.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2E3165872B2BB4AE009043CF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2EF07FC02B292B17002DAA9F /* AppDelegate.swift */,
+				2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */,
+				2EF07FCB2B292B18002DAA9F /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2E3165882B2BB4D6009043CF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2E0B91EA2B2A85BE005BB6FA /* quizData.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2E3165892B2BB516009043CF /* Resources  */ = {
+			isa = PBXGroup;
+			children = (
+				2EF07FC92B292B18002DAA9F /* Assets.xcassets */,
+			);
+			path = "Resources ";
+			sourceTree = "<group>";
+		};
+		2E31658A2B2BB606009043CF /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				2E3165832B2BB440009043CF /* Quiz */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		2EF07FB42B292B16002DAA9F = {
 			isa = PBXGroup;
 			children = (
@@ -63,13 +121,12 @@
 		2EF07FBF2B292B17002DAA9F /* GeoPuzzle */ = {
 			isa = PBXGroup;
 			children = (
-				2E0B91EA2B2A85BE005BB6FA /* quizData.json */,
-				2EF07FC02B292B17002DAA9F /* AppDelegate.swift */,
-				2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */,
-				2EF07FC42B292B17002DAA9F /* QuizViewController.swift */,
-				2EF07FC92B292B18002DAA9F /* Assets.xcassets */,
-				2EF07FCB2B292B18002DAA9F /* LaunchScreen.storyboard */,
 				2EF07FCE2B292B18002DAA9F /* Info.plist */,
+				2E3165872B2BB4AE009043CF /* App */,
+				2E3165892B2BB516009043CF /* Resources  */,
+				2E3165882B2BB4D6009043CF /* Data */,
+				2E3165842B2BB478009043CF /* Models */,
+				2E31658A2B2BB606009043CF /* Features */,
 			);
 			path = GeoPuzzle;
 			sourceTree = "<group>";
@@ -208,6 +265,9 @@
 			files = (
 				2EF07FC52B292B17002DAA9F /* QuizViewController.swift in Sources */,
 				2EF07FC12B292B17002DAA9F /* AppDelegate.swift in Sources */,
+				2E31658E2B2BC401009043CF /* QuizModels.swift in Sources */,
+				2E3165862B2BB48A009043CF /* Quiz.swift in Sources */,
+				2E31658C2B2BB7CF009043CF /* QuizViewModel.swift in Sources */,
 				2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
