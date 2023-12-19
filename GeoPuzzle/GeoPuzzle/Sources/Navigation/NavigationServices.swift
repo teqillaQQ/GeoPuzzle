@@ -13,7 +13,7 @@ final class NavigationServices: NavigationServicesProtocol {
     
     func popVC(_ viewController: UIViewController, animated: Bool) {
         if self.navigationController.viewControllers.contains(viewController) {
-            navigationController.popToViewController(viewController, animated: animated)
+            self.navigationController.popToViewController(viewController, animated: animated)
         } else {
             self.navigationController.popToRootViewController(animated: animated)
         }

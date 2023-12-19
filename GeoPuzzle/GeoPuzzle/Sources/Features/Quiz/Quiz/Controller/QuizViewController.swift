@@ -31,7 +31,14 @@ final class QuizViewController: UIViewController, QuizDisplayLogic {
         return label
     }()
 
-    private var answerButtons = [UIButton]()
+    private let answerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
 
     private let scoreLabel: UILabel = {
         let label = UILabel()
@@ -76,6 +83,7 @@ private extension QuizViewController {
 
     func configureSubviews() {
         self.view.addSubview(self.questionLabel)
+        self.view.addSubview(self.answerStackView)
         self.view.addSubview(self.scoreLabel)
     }
 
@@ -85,20 +93,9 @@ private extension QuizViewController {
             make.leading.trailing.equalToSuperview().inset(16)
         }
 
-        for index in 0..<4 {
-            let button = UIButton(type: .system)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-            button.titleLabel?.numberOfLines = 0
-            button.addTarget(self, action: #selector(answerButtonTapped(_:)), for: .touchUpInside)
-            self.view.addSubview(button)
-
-            button.snp.makeConstraints { make in
-                make.top.equalTo(questionLabel.snp.bottom).offset(20 + CGFloat(index * 50))
-                make.leading.trailing.equalToSuperview().inset(16)
-                make.height.equalTo(40)
-            }
-
-            self.answerButtons.append(button)
+        self.answerStackView.snp.makeConstraints { make in
+            make.top.equalTo(questionLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
 
         self.scoreLabel.snp.makeConstraints { make in
@@ -106,6 +103,7 @@ private extension QuizViewController {
             make.centerX.equalToSuperview()
         }
     }
+
 }
 
 // MARK: - Binding
@@ -134,20 +132,18 @@ private extension QuizViewController {
 // MARK: - Button action
 
 private extension QuizViewController {
-    @objc private func answerButtonTapped(_ sender: UIButton) {
-        let selectedAnswerIndex = self.answerButtons.firstIndex(of: sender) ?? -1
-
+    func answerButtonTapped(_ senderTag: Int) {
         guard self.currentQuestionIndex < self.quizData.count else {
             return
         }
 
         let currentQuizItem = self.quizData[self.currentQuestionIndex]
 
-        guard selectedAnswerIndex >= 0, selectedAnswerIndex < currentQuizItem.answers.count else {
+        guard senderTag >= 0, senderTag < currentQuizItem.answers.count else {
             return
         }
 
-        if selectedAnswerIndex == currentQuizItem.correctAnswerIndex {
+        if senderTag == currentQuizItem.correctAnswerIndex {
             self.showAlert(message: "Правильный ответ!")
             self.score += 1
         } else {
@@ -164,16 +160,6 @@ private extension QuizViewController {
     }
 }
 
-// MARK: - Alert
-
-private extension QuizViewController {
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-}
-
 // MARK: - Update UI
 
 private extension QuizViewController {
@@ -185,14 +171,33 @@ private extension QuizViewController {
         let currentQuizItem = self.quizData[self.currentQuestionIndex]
         self.questionLabel.text = currentQuizItem.question
 
-        for (index, button) in self.answerButtons.enumerated() {
-            if index < currentQuizItem.answers.count {
-                button.setTitle(currentQuizItem.answers[index], for: .normal)
-            } else {
-                button.setTitle("", for: .normal)
-            }
+        self.answerStackView.removeAllArrangedSubviews()
+
+        for (index, answer) in currentQuizItem.answers.enumerated() {
+            let button = QuizButton()
+            
+            button.tag = index
+            button.setText(answer)
+
+            button.publisher(for: .touchUpInside)
+                .sink { [weak self] _ in
+                    self?.answerButtonTapped(button.tag)
+                }
+                .store(in: &cancellables)
+
+            self.answerStackView.addArrangedSubview(button)
         }
 
         self.scoreLabel.text = "Score: \(score)"
+    }
+}
+
+// MARK: - Alert
+
+private extension QuizViewController {
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

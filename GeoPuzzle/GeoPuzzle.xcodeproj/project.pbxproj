@@ -17,6 +17,11 @@
 		2E31659B2B2BD173009043CF /* QuizFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E31659A2B2BD173009043CF /* QuizFactory.swift */; };
 		2E31659E2B2BD45A009043CF /* NavigationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E31659D2B2BD45A009043CF /* NavigationServices.swift */; };
 		2E3165A02B2BD49D009043CF /* NavigationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E31659F2B2BD49D009043CF /* NavigationServicesProtocol.swift */; };
+		2EA2A93F2B31C1F800955ED4 /* QuizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2A93E2B31C1F800955ED4 /* QuizButton.swift */; };
+		2EA2A9422B31C36100955ED4 /* UIControlEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2A9412B31C36100955ED4 /* UIControlEx.swift */; };
+		2EA2A9452B31D33600955ED4 /* UIStackViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2A9442B31D33600955ED4 /* UIStackViewEx.swift */; };
+		2EA2A9482B31EE6200955ED4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2A9472B31EE6200955ED4 /* Theme.swift */; };
+		2EA2A94C2B3210CD00955ED4 /* ThemeEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA2A94B2B3210CD00955ED4 /* ThemeEx.swift */; };
 		2EF07FC12B292B17002DAA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC02B292B17002DAA9F /* AppDelegate.swift */; };
 		2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */; };
 		2EF07FC52B292B17002DAA9F /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF07FC42B292B17002DAA9F /* QuizViewController.swift */; };
@@ -36,6 +41,11 @@
 		2E31659A2B2BD173009043CF /* QuizFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFactory.swift; sourceTree = "<group>"; };
 		2E31659D2B2BD45A009043CF /* NavigationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServices.swift; sourceTree = "<group>"; };
 		2E31659F2B2BD49D009043CF /* NavigationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServicesProtocol.swift; sourceTree = "<group>"; };
+		2EA2A93E2B31C1F800955ED4 /* QuizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizButton.swift; sourceTree = "<group>"; };
+		2EA2A9412B31C36100955ED4 /* UIControlEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControlEx.swift; sourceTree = "<group>"; };
+		2EA2A9442B31D33600955ED4 /* UIStackViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewEx.swift; sourceTree = "<group>"; };
+		2EA2A9472B31EE6200955ED4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		2EA2A94B2B3210CD00955ED4 /* ThemeEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEx.swift; sourceTree = "<group>"; };
 		2EF07FBD2B292B17002DAA9F /* GeoPuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoPuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF07FC02B292B17002DAA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF07FC22B292B17002DAA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +142,8 @@
 		2E3165932B2BD0C6009043CF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2EA2A9462B31EE5400955ED4 /* Theme */,
+				2EA2A93D2B31BED900955ED4 /* Components */,
 				2E31659C2B2BD449009043CF /* Navigation */,
 				2E3165942B2BD0D0009043CF /* Coordinator */,
 				2E31658A2B2BB606009043CF /* Features */,
@@ -164,6 +176,41 @@
 				2E31659D2B2BD45A009043CF /* NavigationServices.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2EA2A93D2B31BED900955ED4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2EA2A9402B31C33100955ED4 /* Extensions */,
+				2EA2A9432B31C39200955ED4 /* Buttons */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2EA2A9402B31C33100955ED4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2EA2A9412B31C36100955ED4 /* UIControlEx.swift */,
+				2EA2A9442B31D33600955ED4 /* UIStackViewEx.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2EA2A9432B31C39200955ED4 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2EA2A93E2B31C1F800955ED4 /* QuizButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		2EA2A9462B31EE5400955ED4 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2EA2A9472B31EE6200955ED4 /* Theme.swift */,
+				2EA2A94B2B3210CD00955ED4 /* ThemeEx.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		2EF07FB42B292B16002DAA9F = {
@@ -335,10 +382,15 @@
 				2E31658E2B2BC401009043CF /* QuizModels.swift in Sources */,
 				2E3165862B2BB48A009043CF /* Quiz.swift in Sources */,
 				2E3165982B2BD105009043CF /* CoordinatorProtocol.swift in Sources */,
+				2EA2A94C2B3210CD00955ED4 /* ThemeEx.swift in Sources */,
+				2EA2A9422B31C36100955ED4 /* UIControlEx.swift in Sources */,
 				2E31658C2B2BB7CF009043CF /* QuizViewModel.swift in Sources */,
 				2E31659E2B2BD45A009043CF /* NavigationServices.swift in Sources */,
+				2EA2A9482B31EE6200955ED4 /* Theme.swift in Sources */,
 				2E31659B2B2BD173009043CF /* QuizFactory.swift in Sources */,
+				2EA2A93F2B31C1F800955ED4 /* QuizButton.swift in Sources */,
 				2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */,
+				2EA2A9452B31D33600955ED4 /* UIStackViewEx.swift in Sources */,
 				2E3165A02B2BD49D009043CF /* NavigationServicesProtocol.swift in Sources */,
 				2E3165902B2BCF72009043CF /* QuizCoordinator.swift in Sources */,
 			);

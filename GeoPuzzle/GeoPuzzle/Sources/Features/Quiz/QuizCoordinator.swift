@@ -20,7 +20,7 @@ final class QuizCoordinator: Coordinator {
     func start(from: EntryPoint) {
         switch from {
         case .next:
-            navigationService.pushVC(self.quizVC(), animated: true)
+            self.navigationService.pushVC(self.quizVC(), animated: true)
         }
     }
 }
