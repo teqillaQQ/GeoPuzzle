@@ -17,7 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
 
         let navigationServices = NavigationServices(navigationController: navigationController)
-        let quizCoordinator = QuizCoordinator(navigationService: navigationServices)
+        let quizAlertService = QuizAlertService()
+        let quizCoordinator = QuizCoordinator(
+            navigationService: navigationServices,
+            alertService: quizAlertService
+        )
         quizCoordinator.start(from: .next)
     }
 

@@ -8,7 +8,7 @@ protocol QuizDisplayLogic: UIViewController {
 
 final class QuizViewController: UIViewController, QuizDisplayLogic {
 
-    typealias QuizData = QuizModels.DisplayModel.QuestionItem
+    typealias Question = QuizModels.QuestionItem
 
     // MARK: - QuizDisplayLogic properties
 
@@ -17,9 +17,6 @@ final class QuizViewController: UIViewController, QuizDisplayLogic {
     // MARK: - Private properties
 
     private var cancellables = Set<AnyCancellable>()
-    private var quizData = [QuizData]()
-    private var currentQuestionIndex = 0
-    private var score = 0
 
     // MARK: - GUI
 
@@ -121,8 +118,11 @@ private extension QuizViewController {
                 case .initial:
                     break
                 case .displaying(let model):
-                    self.quizData = model.questionsData
-                    self.updateUI()
+                    self.updateUI(currentQuestion: model.questionItem, score: model.score)
+                case .nextQuestion(let model):
+                    self.updateUI(currentQuestion: model.questionItem, score: model.score)
+                case .endQuiz:
+                    break
                 }
             }
             .store(in: &self.cancellables)
@@ -133,47 +133,19 @@ private extension QuizViewController {
 
 private extension QuizViewController {
     func answerButtonTapped(_ senderTag: Int) {
-        guard self.currentQuestionIndex < self.quizData.count else {
-            return
-        }
-
-        let currentQuizItem = self.quizData[self.currentQuestionIndex]
-
-        guard senderTag >= 0, senderTag < currentQuizItem.answers.count else {
-            return
-        }
-
-        if senderTag == currentQuizItem.correctAnswerIndex {
-            self.showAlert(message: "Правильный ответ!")
-            self.score += 1
-        } else {
-            self.showAlert(message: "Неправильный ответ.")
-        }
-
-        self.currentQuestionIndex += 1
-
-        if self.currentQuestionIndex < quizData.count {
-            self.updateUI()
-        } else {
-
-        }
+        self.viewModel.answerButtonTapped(at: senderTag)
     }
 }
 
 // MARK: - Update UI
 
 private extension QuizViewController {
-    func updateUI() {
-        guard self.currentQuestionIndex < self.quizData.count else {
-            return
-        }
-
-        let currentQuizItem = self.quizData[self.currentQuestionIndex]
-        self.questionLabel.text = currentQuizItem.question
+    func updateUI(currentQuestion: Question, score: Int) {
+        self.questionLabel.text = currentQuestion.question
 
         self.answerStackView.removeAllArrangedSubviews()
 
-        for (index, answer) in currentQuizItem.answers.enumerated() {
+        for (index, answer) in currentQuestion.answers.enumerated() {
             let button = QuizButton()
             
             button.tag = index
@@ -183,21 +155,11 @@ private extension QuizViewController {
                 .sink { [weak self] _ in
                     self?.answerButtonTapped(button.tag)
                 }
-                .store(in: &cancellables)
+                .store(in: &self.cancellables)
 
             self.answerStackView.addArrangedSubview(button)
         }
 
         self.scoreLabel.text = "Score: \(score)"
-    }
-}
-
-// MARK: - Alert
-
-private extension QuizViewController {
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }

@@ -7,9 +7,13 @@ protocol QuizViewModelLogic: AnyObject {
     var event: AnyPublisher<QuizModels.Event, Never> { get }
 
     func prepareForDisplaying()
+    func answerButtonTapped(at answerIndex: Int)
 }
 
 final class QuizViewModel: QuizViewModelLogic {
+
+    typealias QuestionModel = QuizModels.QuestionModel
+    typealias Question = QuizModels.QuestionItem
 
     // MARK: - QuizViewModelLogic properties
 
@@ -28,10 +32,39 @@ final class QuizViewModel: QuizViewModelLogic {
     private let stateSubject = CurrentValueSubject<QuizModels.State, Never>(.initial)
     private let eventSubject = PassthroughSubject<QuizModels.Event, Never>()
 
+    private var questions: [Question]?
+    private var currentQuestionIndex = 0
+    private var score = 0
+
     // MARK: - Actions
 
     func prepareForDisplaying() {
         self.requestQuizData()
+    }
+
+    func answerButtonTapped(at answerIndex: Int)  {
+        guard let currentQuestion = self.questions?.get(by: self.currentQuestionIndex) else { return }
+
+        if answerIndex == currentQuestion.correctAnswerIndex {
+            self.eventSubject.send(.showAlert("Правильный ответ!"))
+            self.score += 1
+        } else {
+            self.eventSubject.send(.showAlert("Неправильный ответ."))
+        }
+
+        self.currentQuestionIndex += 1
+
+        guard let nextQuestion = self.questions?.get(by: self.currentQuestionIndex)
+        else {
+            self.stateSubject.send(.endQuiz)
+            return
+        }
+        self.stateSubject.send(.nextQuestion(
+            .init(
+                questionItem: nextQuestion,
+                score: self.score
+            )
+        ))
     }
 }
 
@@ -47,8 +80,17 @@ private extension QuizViewModel {
         do {
             let data = try Data(contentsOf: url)
             let quizItems = try JSONDecoder().decode([QuizItem].self, from: data)
+            let questionModel = QuestionModel(data: quizItems)
 
-            self.stateSubject.send(.displaying(model: .init(data: quizItems)))
+            self.questions = questionModel.questionsData
+
+            guard let currentQuestion = self.questions?.get(by: self.currentQuestionIndex) else { return }
+            self.stateSubject.send(.displaying(
+                .init(
+                    questionItem: currentQuestion,
+                    score: self.score
+                )
+            ))
         } catch {
             self.eventSubject.send(.close)
         }

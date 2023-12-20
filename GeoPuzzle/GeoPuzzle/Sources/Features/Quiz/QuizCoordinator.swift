@@ -6,13 +6,16 @@ final class QuizCoordinator: Coordinator {
 
     private let modulesFactory: QuizFactoryLogic
     private let navigationService: NavigationServicesProtocol
+    private let alertService: QuizAlertServiceLogic
 
     init(
         modulesFactory: QuizFactoryLogic = QuizModulesFactory(),
-        navigationService: NavigationServicesProtocol
+        navigationService: NavigationServicesProtocol,
+        alertService: QuizAlertServiceLogic
     ) {
         self.modulesFactory = modulesFactory
         self.navigationService = navigationService
+        self.alertService = alertService
     }
 
     // MARK: - Start coordinator
@@ -40,6 +43,8 @@ private extension QuizCoordinator {
                     break
                 case .close:
                     self.navigationService.popVC()
+                case .showAlert(let message):
+                    self.alertService.showAlert(message: message)
                 }
             }
             .store(in: &self.cancellables)

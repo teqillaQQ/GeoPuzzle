@@ -1,21 +1,24 @@
 enum QuizModels {
     enum State {
         case initial
-        case displaying(model: DisplayModel)
+        case displaying(DisplayModel)
+        case nextQuestion(DisplayModel)
+        case endQuiz
     }
 
     enum Event {
         case next
+        case showAlert(_ message: String)
         case close
     }
 
-    struct DisplayModel {
-        struct QuestionItem {
-            let question: String
-            let answers: [String]
-            let correctAnswerIndex: Int
-        }
+    struct QuestionItem {
+        let question: String
+        let answers: [String]
+        let correctAnswerIndex: Int
+    }
 
+    struct QuestionModel {
         let questionsData: [QuestionItem]
 
         init(data: [QuizItem]) {
@@ -28,5 +31,9 @@ enum QuizModels {
             }
         }
     }
-}
 
+    struct DisplayModel {
+        let questionItem: QuestionItem
+        let score: Int
+    }
+}
