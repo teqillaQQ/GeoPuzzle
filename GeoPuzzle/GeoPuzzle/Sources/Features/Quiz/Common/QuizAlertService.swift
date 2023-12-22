@@ -1,11 +1,19 @@
 import UIKit
 
 protocol QuizAlertServiceLogic {
-    func showAlert(message: String)
+    func showAlert(isCorrectAnswer: Bool, correctAnswer: String?)
 }
 
 struct QuizAlertService: QuizAlertServiceLogic {
-    func showAlert(message: String) {
-        AlertHelper.showAlert(title: nil, message: message)
+    func showAlert(isCorrectAnswer: Bool, correctAnswer: String?) {
+        let title = isCorrectAnswer ? "Правильный ответ!" : "Неправильный ответ!"
+        let message = isCorrectAnswer ? nil : "Правильный ответ \(correctAnswer ?? "")"
+
+        AlertHelper.showAlert(
+            title: title,
+            message: message,
+            buttonTitle: "Ок"
+        )
     }
 }
+

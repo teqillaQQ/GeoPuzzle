@@ -8,7 +8,7 @@ enum QuizModels {
 
     enum Event {
         case next
-        case showAlert(_ message: String)
+        case showAlert(_ isCorrectAnswer: Bool, correctAnswer: String? = nil)
         case close
     }
 

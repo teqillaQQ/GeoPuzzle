@@ -46,10 +46,11 @@ final class QuizViewModel: QuizViewModelLogic {
         guard let currentQuestion = self.questions?.get(by: self.currentQuestionIndex) else { return }
 
         if answerIndex == currentQuestion.correctAnswerIndex {
-            self.eventSubject.send(.showAlert("Правильный ответ!"))
+            self.eventSubject.send(.showAlert(true))
             self.score += 1
         } else {
-            self.eventSubject.send(.showAlert("Неправильный ответ."))
+            let correctAnswer = currentQuestion.answers[currentQuestion.correctAnswerIndex]
+            self.eventSubject.send(.showAlert(false, correctAnswer: correctAnswer))
         }
 
         self.currentQuestionIndex += 1

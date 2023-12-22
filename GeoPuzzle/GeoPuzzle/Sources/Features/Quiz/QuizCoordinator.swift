@@ -43,8 +43,8 @@ private extension QuizCoordinator {
                     break
                 case .close:
                     self.navigationService.popVC()
-                case .showAlert(let message):
-                    self.alertService.showAlert(message: message)
+                case .showAlert(let isCorrectAnswer, let correctAnswer):
+                    self.alertService.showAlert(isCorrectAnswer: isCorrectAnswer, correctAnswer: correctAnswer)
                 }
             }
             .store(in: &self.cancellables)
