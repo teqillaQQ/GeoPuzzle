@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class OrdersViewController: UIViewController, OrdersBaseCoordinated {
 
@@ -30,8 +31,6 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -41,20 +40,17 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
         profileImageView.layer.cornerRadius = 50
         profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = .secondarySystemBackground
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(profileImageView)
         
         userNameLabel.text = "Географ"
         userNameLabel.font = .boldSystemFont(ofSize: 24)
         userNameLabel.textColor = .label
         userNameLabel.textAlignment = .center
-        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(userNameLabel)
         
         statsStackView.axis = .horizontal
         statsStackView.distribution = .fillEqually
         statsStackView.spacing = 16
-        statsStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(statsStackView)
         
         addStatCard(title: "0", subtitle: "Правильных")
@@ -63,7 +59,6 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
         
         sectionsStackView.axis = .vertical
         sectionsStackView.spacing = 16
-        sectionsStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(sectionsStackView)
         
         addSectionButton(icon: "chart.bar.fill", title: "Статистика", description: "Просмотр результатов")
@@ -75,35 +70,32 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
         let containerView = UIView()
         containerView.backgroundColor = .secondarySystemBackground
         containerView.layer.cornerRadius = 12
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.font = .boldSystemFont(ofSize: 28)
         titleLabel.textColor = Theme.Colors.primaryBlue
         titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let subtitleLabel = UILabel()
         subtitleLabel.text = subtitle
         subtitleLabel.font = .systemFont(ofSize: 12)
         subtitleLabel.textColor = .secondaryLabel
         subtitleLabel.textAlignment = .center
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)
         
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
-            
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
-            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
-            subtitleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.trailing.equalToSuperview().inset(8)
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.leading.trailing.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview().offset(-16)
+        }
         
         statsStackView.addArrangedSubview(containerView)
     }
@@ -112,89 +104,90 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
         let containerView = UIView()
         containerView.backgroundColor = .secondarySystemBackground
         containerView.layer.cornerRadius = 12
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         let iconView = UIImageView(image: UIImage(systemName: icon))
         iconView.tintColor = Theme.Colors.primaryBlue
         iconView.contentMode = .scaleAspectFit
-        iconView.translatesAutoresizingMaskIntoConstraints = false
         
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.textColor = .label
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let descriptionLabel = UILabel()
         descriptionLabel.text = description
         descriptionLabel.font = .systemFont(ofSize: 14)
         descriptionLabel.textColor = .secondaryLabel
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let chevronView = UIImageView(image: UIImage(systemName: "chevron.right"))
         chevronView.tintColor = .tertiaryLabel
         chevronView.contentMode = .scaleAspectFit
-        chevronView.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(iconView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
         containerView.addSubview(chevronView)
         
-        NSLayoutConstraint.activate([
-            iconView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            iconView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            iconView.widthAnchor.constraint(equalToConstant: 32),
-            iconView.heightAnchor.constraint(equalToConstant: 32),
-            
-            titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: chevronView.leadingAnchor, constant: -12),
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -4),
-            
-            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            
-            chevronView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            chevronView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            chevronView.widthAnchor.constraint(equalToConstant: 16),
-            chevronView.heightAnchor.constraint(equalToConstant: 16)
-        ])
+        iconView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(32)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(iconView.snp.trailing).offset(12)
+            make.trailing.equalTo(chevronView.snp.leading).offset(-12)
+            make.top.equalToSuperview().offset(16)
+            make.bottom.equalTo(descriptionLabel.snp.top).offset(-4)
+        }
+        
+        descriptionLabel.snp.makeConstraints { make in
+            make.leading.equalTo(titleLabel.snp.leading)
+            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.bottom.equalToSuperview().offset(-16)
+        }
+        
+        chevronView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-16)
+            make.centerY.equalToSuperview()
+            make.size.equalTo(16)
+        }
         
         sectionsStackView.addArrangedSubview(containerView)
     }
     
     private func configureConstraints() {
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
-            profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-            userNameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
-            userNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            userNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
-            statsStackView.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 32),
-            statsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            statsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
-            sectionsStackView.topAnchor.constraint(equalTo: statsStackView.bottomAnchor, constant: 32),
-            sectionsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            sectionsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            sectionsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.width.equalTo(scrollView)
+        }
+        
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(32)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(100)
+        }
+        
+        userNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        statsStackView.snp.makeConstraints { make in
+            make.top.equalTo(userNameLabel.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        sectionsStackView.snp.makeConstraints { make in
+            make.top.equalTo(statsStackView.snp.bottom).offset(32)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-40)
+        }
     }
 }
