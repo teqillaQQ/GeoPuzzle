@@ -1,9 +1,9 @@
 import UIKit
 import SnapKit
 
-class OrdersViewController: UIViewController, OrdersBaseCoordinated {
+class ProfileViewController: UIViewController, ProfileBaseCoordinated {
 
-    var coordinator: OrdersCoordinatorProtocol?
+    var coordinator: ProfileCoordinatorProtocol?
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -12,7 +12,7 @@ class OrdersViewController: UIViewController, OrdersBaseCoordinated {
     private let statsStackView = UIStackView()
     private let sectionsStackView = UIStackView()
 
-    init(coordinator: OrdersCoordinatorProtocol) {
+    init(coordinator: ProfileCoordinatorProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
         title = "Личный кабинет"

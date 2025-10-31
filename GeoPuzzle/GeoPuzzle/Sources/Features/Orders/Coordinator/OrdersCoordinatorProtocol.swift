@@ -1,1 +1,1 @@
-protocol OrdersCoordinatorProtocol: CoordinatorProtocol {}
+protocol ProfileCoordinatorProtocol: CoordinatorProtocol {}

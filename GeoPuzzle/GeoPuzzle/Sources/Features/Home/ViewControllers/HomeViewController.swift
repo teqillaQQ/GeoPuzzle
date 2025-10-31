@@ -1,8 +1,8 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController, HomeBaseCoordinated {
-    var coordinator: HomeCoordinatorProtocol?
+class AboutViewController: UIViewController, AboutBaseCoordinated {
+    var coordinator: AboutCoordinatorProtocol?
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, HomeBaseCoordinated {
     private let descriptionLabel = UILabel()
     private let infoStackView = UIStackView()
 
-    init(coordinator: HomeCoordinatorProtocol) {
+    init(coordinator: AboutCoordinatorProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.coordinator = coordinator
         title = "О приложении"

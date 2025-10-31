@@ -5,8 +5,8 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 
     lazy var rootViewController: UIViewController = UITabBarController()
 
-    lazy var homeCoordinator: HomeCoordinatorProtocol = HomeCoordinator()
-    lazy var ordersCoordinator: OrdersCoordinatorProtocol = OrdersCoordinator()
+    lazy var aboutCoordinator: AboutCoordinatorProtocol = AboutCoordinator()
+    lazy var profileCoordinator: ProfileCoordinatorProtocol = ProfileCoordinator()
     lazy var quizCoordinator: QuizCoordinatorProtocol = QuizCoordinator()
     lazy var deepLinkCoordinator: DeepLinkCoordinatorProtocol = DeepLinkCoordinator(mainBaseCoordinator: self)
 
@@ -15,13 +15,13 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 
 
     func start() -> UIViewController {
-        let homeViewController = homeCoordinator.start()
-        homeCoordinator.parentCoordinator = self
-        homeViewController.tabBarItem = UITabBarItem(title: "О приложении", image: UIImage(systemName: "info.circle"), tag: 0)
+        let aboutViewController = aboutCoordinator.start()
+        aboutCoordinator.parentCoordinator = self
+        aboutViewController.tabBarItem = UITabBarItem(title: "О приложении", image: UIImage(systemName: "info.circle"), tag: 0)
 
-        let ordersViewController = ordersCoordinator.start()
-        ordersCoordinator.parentCoordinator = self
-        ordersViewController.tabBarItem = UITabBarItem(title: "Личный кабинет", image: UIImage(systemName: "person.circle"), tag: 1)
+        let profileViewController = profileCoordinator.start()
+        profileCoordinator.parentCoordinator = self
+        profileViewController.tabBarItem = UITabBarItem(title: "Личный кабинет", image: UIImage(systemName: "person.circle"), tag: 1)
 
         let quizViewController = quizCoordinator.start()
         quizCoordinator.parentCoordinator = self
@@ -29,8 +29,8 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 
         (rootViewController as? UITabBarController)?.viewControllers = [
             quizViewController,
-            homeViewController,
-            ordersViewController
+            aboutViewController,
+            profileViewController
         ]
         
         (rootViewController as? UITabBarController)?.selectedIndex = 0
@@ -40,22 +40,22 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 
     func moveTo(flow: AppFlow, userData: [String : Any]?) {
         switch flow {
-        case .home:
-            goToHomeFlow(flow)
-        case .orders:
-            goToOrdersFlow(flow)
+        case .about:
+            goToAboutFlow(flow)
+        case .profile:
+            goToProfileFlow(flow)
         case .quiz:
             goToQuizFlow(flow)
         }
     }
 
-    private func goToHomeFlow(_ flow: AppFlow) {
-        homeCoordinator.moveTo(flow: flow, userData: nil)
+    private func goToAboutFlow(_ flow: AppFlow) {
+        aboutCoordinator.moveTo(flow: flow, userData: nil)
         (rootViewController as? UITabBarController)?.selectedIndex = 1
     }
 
-    private func goToOrdersFlow(_ flow: AppFlow) {
-        ordersCoordinator.moveTo(flow: flow, userData: nil)
+    private func goToProfileFlow(_ flow: AppFlow) {
+        profileCoordinator.moveTo(flow: flow, userData: nil)
         (rootViewController as? UITabBarController)?.selectedIndex = 2
 
     }
@@ -77,17 +77,17 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 }
 
 enum AppFlow {
-    case home(HomeScreen)
-    case orders(OrdersScreen)
+    case about(AboutScreen)
+    case profile(ProfileScreen)
     case quiz(QuizScreen)
 }
 
-enum HomeScreen {
+enum AboutScreen {
     case initialScreen
     case doubleButtonScreen
 }
 
-enum OrdersScreen {
+enum ProfileScreen {
     case firstScreen
     case secondScreen
     case thirdScreen

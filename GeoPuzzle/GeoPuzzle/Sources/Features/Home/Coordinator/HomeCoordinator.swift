@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class HomeCoordinator: HomeCoordinatorProtocol {
+class AboutCoordinator: AboutCoordinatorProtocol {
 
     var cancellables = Set<AnyCancellable>()
     var parentCoordinator: MainTabBarCoordinatorProtocol?
@@ -9,20 +9,20 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     lazy var rootViewController: UIViewController = UIViewController()
 
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: HomeViewController(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: AboutViewController(coordinator: self))
         return rootViewController
     }
 
     func moveTo(flow: AppFlow, userData: [String : Any]? = nil) {
         switch flow {
-        case .home(let screen):
-            handleHomeFlow(for: screen, userData: userData)
+        case .about(let screen):
+            handleAboutFlow(for: screen, userData: userData)
         default:
             parentCoordinator?.moveTo(flow: flow, userData: userData)
         }
     }
 
-    private func handleHomeFlow(for screen: HomeScreen, userData: [String: Any]?) {
+    private func handleAboutFlow(for screen: AboutScreen, userData: [String: Any]?) {
         switch screen {
         case .initialScreen:
             navigationService.popToRoot(animated: true)

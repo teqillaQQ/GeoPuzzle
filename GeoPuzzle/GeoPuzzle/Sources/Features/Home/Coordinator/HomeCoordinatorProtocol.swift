@@ -1,1 +1,1 @@
-protocol HomeCoordinatorProtocol: CoordinatorProtocol {}
+protocol AboutCoordinatorProtocol: CoordinatorProtocol {}

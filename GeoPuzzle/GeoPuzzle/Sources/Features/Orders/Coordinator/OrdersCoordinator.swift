@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-class OrdersCoordinator: OrdersCoordinatorProtocol {
+class ProfileCoordinator: ProfileCoordinatorProtocol {
 
     var cancellables = Set<AnyCancellable>()
     var parentCoordinator: MainTabBarCoordinatorProtocol?
@@ -9,20 +9,20 @@ class OrdersCoordinator: OrdersCoordinatorProtocol {
     var rootViewController: UIViewController = UIViewController()
 
     func start() -> UIViewController {
-        rootViewController = UINavigationController(rootViewController: OrdersViewController(coordinator: self))
+        rootViewController = UINavigationController(rootViewController: ProfileViewController(coordinator: self))
         return rootViewController
     }
 
     func moveTo(flow: AppFlow, userData: [String : Any]? = nil) {
         switch flow {
-        case .orders(let screen):
-            handleOrdersFlow(for: screen, userData: userData)
+        case .profile(let screen):
+            handleProfileFlow(for: screen, userData: userData)
         default:
             parentCoordinator?.moveTo(flow: flow, userData: userData)
         }
     }
 
-    private func handleOrdersFlow(for screen: OrdersScreen, userData: [String : Any]? = nil) {
+    private func handleProfileFlow(for screen: ProfileScreen, userData: [String : Any]? = nil) {
         switch screen {
         case .firstScreen:
             resetToRoot(animated: false)
