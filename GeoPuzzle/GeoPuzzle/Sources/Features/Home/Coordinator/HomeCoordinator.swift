@@ -27,34 +27,9 @@ class HomeCoordinator: HomeCoordinatorProtocol {
         case .initialScreen:
             navigationService.popToRoot(animated: true)
         case .doubleButtonScreen:
-            guard let title = userData?["title"] as? String else { return }
-            goToHome2ScreenWith(title: title)
+            navigationService.popToRoot(animated: true)
         }
     }
-
-    func goToHome2ScreenWith(title: String) {
-        let home2ViewController = Home2ViewController(coordinator: self)
-        home2ViewController.title = title
-        navigationService.pushVC(home2ViewController)
-    }
-//
-//    func goToFavoritesFlow() {
-//        parentCoordinator?.moveTo(flow: .orders(.firstScreen))
-//    }
-//
-//    func goToDeepViewInFavoriteTab() {
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-//                self?.parentCoordinator?.ordersCoordinator
-//                    .resetToRoot(animated: false)
-//            }
-//            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) { [weak self] in
-//                self?.parentCoordinator?.ordersCoordinator
-//                    .goToOrder2Screen(animated: false)
-//                    .goToOrder3Screen(animated: false)
-//                self?.parentCoordinator?.moveTo(flow: .orders)
-//            }
-//    }
 
     func resetToRoot() -> Self {
         navigationService.popToRoot(animated: false)

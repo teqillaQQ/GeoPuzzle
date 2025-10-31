@@ -17,21 +17,23 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
     func start() -> UIViewController {
         let homeViewController = homeCoordinator.start()
         homeCoordinator.parentCoordinator = self
-        homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "homekit"), tag: 0)
+        homeViewController.tabBarItem = UITabBarItem(title: "О приложении", image: UIImage(systemName: "info.circle"), tag: 0)
 
         let ordersViewController = ordersCoordinator.start()
         ordersCoordinator.parentCoordinator = self
-        ordersViewController.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "doc.plaintext"), tag: 1)
+        ordersViewController.tabBarItem = UITabBarItem(title: "Личный кабинет", image: UIImage(systemName: "person.circle"), tag: 1)
 
         let quizViewController = quizCoordinator.start()
         quizCoordinator.parentCoordinator = self
-        quizViewController.tabBarItem = UITabBarItem(title: "Quiz", image: UIImage(systemName: "cat"), tag: 2)
+        quizViewController.tabBarItem = UITabBarItem(title: "Викторина", image: UIImage(systemName: "questionmark.circle.fill"), tag: 2)
 
         (rootViewController as? UITabBarController)?.viewControllers = [
+            quizViewController,
             homeViewController,
-            ordersViewController,
-            quizViewController
+            ordersViewController
         ]
+        
+        (rootViewController as? UITabBarController)?.selectedIndex = 0
 
         return rootViewController
     }
@@ -49,18 +51,18 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
 
     private func goToHomeFlow(_ flow: AppFlow) {
         homeCoordinator.moveTo(flow: flow, userData: nil)
-        (rootViewController as? UITabBarController)?.selectedIndex = 0
+        (rootViewController as? UITabBarController)?.selectedIndex = 1
     }
 
     private func goToOrdersFlow(_ flow: AppFlow) {
         ordersCoordinator.moveTo(flow: flow, userData: nil)
-        (rootViewController as? UITabBarController)?.selectedIndex = 1
+        (rootViewController as? UITabBarController)?.selectedIndex = 2
 
     }
 
     private func goToQuizFlow(_ flow: AppFlow) {
         quizCoordinator.moveTo(flow: flow, userData: nil)
-        (rootViewController as? UITabBarController)?.selectedIndex = 2
+        (rootViewController as? UITabBarController)?.selectedIndex = 0
     }
 
     func handleDeepLink(text: String) {
@@ -68,8 +70,8 @@ final class MainTabBarCoordinator: MainTabBarCoordinatorProtocol {
     }
 
     func resetToRoot() -> Self {
-        homeCoordinator.resetToRoot(animated: false)
-        moveTo(flow: .home(.initialScreen), userData: nil)
+        quizCoordinator.resetToRoot(animated: false)
+        moveTo(flow: .quiz(.firstScreen), userData: nil)
         return self
     }
 }

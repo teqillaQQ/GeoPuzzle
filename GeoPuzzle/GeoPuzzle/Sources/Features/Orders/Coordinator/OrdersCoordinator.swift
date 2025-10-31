@@ -27,22 +27,10 @@ class OrdersCoordinator: OrdersCoordinatorProtocol {
         case .firstScreen:
             resetToRoot(animated: false)
         case .secondScreen:
-            handleGoToSecondScreen()
+            resetToRoot(animated: false)
         case .thirdScreen:
-            handleGoToThirdScreen()
+            resetToRoot(animated: false)
         }
-    }
-
-    private func handleGoToSecondScreen() {
-        resetToRoot(animated: false)
-        navigationService.pushVC(Orders2ViewController(coordinator: self), animated: false)
-
-    }
-
-    private func handleGoToThirdScreen() {
-        resetToRoot(animated: false)
-        navigationService.pushVC(Orders2ViewController(coordinator: self), animated: false)
-        navigationService.pushVC(Orders3ViewController(coordinator: self), animated: false)
     }
 
     @discardableResult

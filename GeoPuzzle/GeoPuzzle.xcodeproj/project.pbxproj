@@ -26,12 +26,9 @@
 		2EBE3B5F2B48C84100CFE5B9 /* DeepLinkCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B5E2B48C84100CFE5B9 /* DeepLinkCoordinatorProtocol.swift */; };
 		2EBE3B612B48C85000CFE5B9 /* DeepLinkCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B602B48C85000CFE5B9 /* DeepLinkCoordinator.swift */; };
 		2EBE3B642B48C88100CFE5B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B632B48C88100CFE5B9 /* HomeViewController.swift */; };
-		2EBE3B672B48C8A700CFE5B9 /* Home2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B662B48C8A700CFE5B9 /* Home2ViewController.swift */; };
 		2EBE3B6A2B48C8CF00CFE5B9 /* HomeCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B692B48C8CF00CFE5B9 /* HomeCoordinatorProtocol.swift */; };
 		2EBE3B6C2B48C8E300CFE5B9 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B6B2B48C8E300CFE5B9 /* HomeCoordinator.swift */; };
 		2EBE3B6F2B48C95300CFE5B9 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B6E2B48C95300CFE5B9 /* OrdersViewController.swift */; };
-		2EBE3B722B48C97800CFE5B9 /* Orders2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B712B48C97800CFE5B9 /* Orders2ViewController.swift */; };
-		2EBE3B742B48C98800CFE5B9 /* Orders3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B732B48C98800CFE5B9 /* Orders3ViewController.swift */; };
 		2EBE3B792B48C9D300CFE5B9 /* OrdersCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B782B48C9D300CFE5B9 /* OrdersCoordinatorProtocol.swift */; };
 		2EBE3B7B2B48C9DD00CFE5B9 /* OrdersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE3B7A2B48C9DD00CFE5B9 /* OrdersCoordinator.swift */; };
 		2ECA8F5C2B3510A700E96250 /* MainTabBarCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA8F5B2B3510A700E96250 /* MainTabBarCoordinatorProtocol.swift */; };
@@ -68,12 +65,9 @@
 		2EBE3B5E2B48C84100CFE5B9 /* DeepLinkCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		2EBE3B602B48C85000CFE5B9 /* DeepLinkCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkCoordinator.swift; sourceTree = "<group>"; };
 		2EBE3B632B48C88100CFE5B9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2EBE3B662B48C8A700CFE5B9 /* Home2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home2ViewController.swift; sourceTree = "<group>"; };
 		2EBE3B692B48C8CF00CFE5B9 /* HomeCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		2EBE3B6B2B48C8E300CFE5B9 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		2EBE3B6E2B48C95300CFE5B9 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
-		2EBE3B712B48C97800CFE5B9 /* Orders2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders2ViewController.swift; sourceTree = "<group>"; };
-		2EBE3B732B48C98800CFE5B9 /* Orders3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders3ViewController.swift; sourceTree = "<group>"; };
 		2EBE3B782B48C9D300CFE5B9 /* OrdersCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCoordinatorProtocol.swift; sourceTree = "<group>"; };
 		2EBE3B7A2B48C9DD00CFE5B9 /* OrdersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCoordinator.swift; sourceTree = "<group>"; };
 		2ECA8F5B2B3510A700E96250 /* MainTabBarCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinatorProtocol.swift; sourceTree = "<group>"; };
@@ -275,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				2EBE3B632B48C88100CFE5B9 /* HomeViewController.swift */,
-				2EBE3B662B48C8A700CFE5B9 /* Home2ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,8 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				2EBE3B6E2B48C95300CFE5B9 /* OrdersViewController.swift */,
-				2EBE3B712B48C97800CFE5B9 /* Orders2ViewController.swift */,
-				2EBE3B732B48C98800CFE5B9 /* Orders3ViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -512,9 +503,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GeoPuzzle/Pods-GeoPuzzle-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -552,11 +547,8 @@
 				2E31659E2B2BD45A009043CF /* NavigationServices.swift in Sources */,
 				2EA2A9482B31EE6200955ED4 /* Theme.swift in Sources */,
 				2E31659B2B2BD173009043CF /* QuizFactory.swift in Sources */,
-				2EBE3B742B48C98800CFE5B9 /* Orders3ViewController.swift in Sources */,
 				2EDE37E32B32683F009B7C1C /* ArrayEx.swift in Sources */,
-				2EBE3B722B48C97800CFE5B9 /* Orders2ViewController.swift in Sources */,
 				2EA2A93F2B31C1F800955ED4 /* QuizButton.swift in Sources */,
-				2EBE3B672B48C8A700CFE5B9 /* Home2ViewController.swift in Sources */,
 				2ECA8F5C2B3510A700E96250 /* MainTabBarCoordinatorProtocol.swift in Sources */,
 				2EBE3B6F2B48C95300CFE5B9 /* OrdersViewController.swift in Sources */,
 				2EF07FC32B292B17002DAA9F /* SceneDelegate.swift in Sources */,
