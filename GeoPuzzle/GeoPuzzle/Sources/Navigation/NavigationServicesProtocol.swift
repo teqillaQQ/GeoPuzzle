@@ -4,6 +4,7 @@ protocol NavigationServicesProtocol {
     func pushVC(_ viewController: UIViewController, animated: Bool)
     func popVC(_ viewController: UIViewController, animated: Bool)
     func popVC(animated: Bool)
+    func popToRoot(animated: Bool)
 }
 
 extension NavigationServicesProtocol {
@@ -17,5 +18,9 @@ extension NavigationServicesProtocol {
 
     func popVC(animated: Bool = true) {
         popVC(animated: animated)
+    }
+
+    func popToRoot(animated: Bool = true) {
+        popToRoot(animated: animated)
     }
 }

@@ -10,19 +10,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        self.window = UIWindow(windowScene: windowScene)
-
-        let navigationController = UINavigationController()
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-
-        let navigationServices = NavigationServices(navigationController: navigationController)
-        let quizAlertService = QuizAlertService()
-        let quizCoordinator = QuizCoordinator(
-            navigationService: navigationServices,
-            alertService: quizAlertService
-        )
-        quizCoordinator.start(from: .next)
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = MainTabBarCoordinator().start()
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

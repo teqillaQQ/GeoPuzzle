@@ -22,4 +22,8 @@ final class NavigationServices: NavigationServicesProtocol {
     func popVC(animated: Bool = true) {
         self.navigationController.popViewController(animated: animated)
     }
+
+    func popToRoot(animated: Bool = true) {
+        self.navigationController.popToRootViewController(animated: animated)
+    }
 }

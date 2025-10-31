@@ -1,10 +1,10 @@
 protocol QuizFactoryLogic {
-    func makeQuizModule() -> QuizDisplayLogic
+    func makeQuizModule(_ coordinator: QuizCoordinatorProtocol) -> QuizDisplayLogic
 }
 
 struct QuizModulesFactory: QuizFactoryLogic {
-    func makeQuizModule() -> QuizDisplayLogic {
-        let vm = QuizViewModel()
+    func makeQuizModule(_ coordinator: QuizCoordinatorProtocol) -> QuizDisplayLogic {
+        let vm = QuizViewModel(coordinator: coordinator)
         return QuizViewController(vm: vm)
     }
 }
